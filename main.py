@@ -23,11 +23,15 @@ def main():
     while True:
         print("\n1.Show jobs")
         print("2.Analyze jobs")
+        print("3.Analyze specific job")
         choice = input("Enter option: ")
 
+        #Show jobs option
         if choice == "1":
             show_jobs(jobs)
             continue
+
+        #Analyze jobs (all)
         elif choice == "2":
             for i, job in enumerate(jobs[:5], 1):
                 print(f"\n{i}. {job['title']} - {job['company']}")
@@ -35,6 +39,23 @@ def main():
                 result = analyze_job(job)
                 print(result)
             continue
+
+        #Analyze job (specified)
+        elif choice == "3":
+            job_choice = (input("Enter job index: "))
+
+            #Check if input is a digit
+            if job_choice.isdigit():
+                job_choice = int(job_choice)
+            else:
+                print("\nThats not a number!")
+
+            for i, job in enumerate(jobs, 1):
+                if i == job_choice:
+                    print(f"{i}. {job['title']} - {job['company']}")
+                    result = analyze_job(job)
+                    print(result)
+                    break   
         else:
             print("\nOption does not exist!")
             continue
