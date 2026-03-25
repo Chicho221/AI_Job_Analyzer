@@ -11,11 +11,18 @@ def load_jobs():
         print("Please run Job Scraper to generate file.")
         print("Exiting program.\n")
         return False
-
+    
+#Display jobs
 def show_jobs(jobs):
     for i, job in enumerate(jobs[:5], 1):
         print(f"\n {i}. {job['title']} - {job['company']}")
-    
+
+#Saves analysis
+def save_analysis(result):
+    with open("JobAnalyzer/analysis.txt", "a") as file:
+        file.write(result + "\n")
+
+#Main logic
 def main():
     jobs = load_jobs()
     if not jobs:
@@ -37,7 +44,8 @@ def main():
                 print(f"\n{i}. {job['title']} - {job['company']}")
 
                 result = analyze_job(job)
-                print(result)
+                save_analysis(result)
+                print(result) 
             continue
 
         #Analyze job (specified)
@@ -55,7 +63,7 @@ def main():
                     print(f"{i}. {job['title']} - {job['company']}")
                     result = analyze_job(job)
                     print(result)
-                    break   
+                    save_analysis(result)
         else:
             print("\nOption does not exist!")
             continue
