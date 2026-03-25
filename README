@@ -7,6 +7,7 @@ How to use:
 Features:
 - Display jobs
 - Analyze jobs using OpenAI
+- Fake job analasis 
 - Analyze chosen job (from scrapped list) using OpenAI
 - Automatically saves analyzed jobs in analysis.txt
 - Clear option for analysis.txt
