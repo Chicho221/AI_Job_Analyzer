@@ -22,6 +22,11 @@ def save_analysis(result):
     with open("JobAnalyzer/analysis.txt", "a") as file:
         file.write(result + "\n")
 
+#Clears analysis.txt
+def clear_analysis():
+    with open("JobAnalyzer/analysis.txt", "w") as file:
+        pass
+
 #Main logic
 def main():
     jobs = load_jobs()
@@ -31,7 +36,9 @@ def main():
         print("\n1.Show jobs")
         print("2.Analyze jobs")
         print("3.Analyze specific job")
-        choice = input("Enter option: ")
+        print("4.Clear analysis file")
+        print("5.Exit")
+        choice = input("\nEnter option: ")
 
         #Show jobs option
         if choice == "1":
@@ -62,8 +69,18 @@ def main():
                 if i == job_choice:
                     print(f"{i}. {job['title']} - {job['company']}")
                     result = analyze_job(job)
+                    if result == None:
+                        print("Error")
                     print(result)
                     save_analysis(result)
+
+        #Clear analysis file
+        elif choice == "4":
+            confirm = input ("Are you sure?: (y/n)").lower()
+            if confirm == "y":
+                clear_analysis()
+        elif choice == "5":
+            break
         else:
             print("\nOption does not exist!")
             continue
