@@ -1,0 +1,12 @@
+Job Analyzer
+
+How to use:
+1. Enter your OpenAI API Key in "config.py"
+2. Run main.py
+
+Features:
+- Display jobs
+- Analyze jobs using OpenAI
+- Analyze chosen job (from scrapped list) using OpenAI
+- Automatically saves analyzed jobs in analysis.txt
+- Clear option for analysis.txt
