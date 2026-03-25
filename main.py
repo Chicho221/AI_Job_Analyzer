@@ -36,8 +36,9 @@ def main():
         print("\n1.Show jobs")
         print("2.Analyze jobs (AI)")
         print("3.Analyze specific job (AI)")
-        print("4.Clear analysis file")
-        print("5.Exit")
+        print("4.Analyze jobs (Fake)")
+        print("5.Clear analysis file")
+        print("6.Exit")
         choice = input("\nEnter option: ")
 
         #Show jobs option
@@ -45,7 +46,7 @@ def main():
             show_jobs(jobs)
             continue
 
-        #Analyze jobs (all)
+        #Analyze jobs using OpenAI (all)
         elif choice == "2":
             for i, job in enumerate(jobs[:5], 1):
                 result = analyze_jobAI(job)
@@ -76,13 +77,22 @@ def main():
                         print(result)
             else:
                 print("\nIndex does not exist.")
-
-        #Clear analysis file
+        #Analyze jobs using fakeAI (all)
         elif choice == "4":
+            for i, job in enumerate(jobs[:5], 1):
+                result = analyze_jobFake(job)
+                if result == None:
+                    break
+                save_analysis(result)
+                print(f"\n{i}. {job['title']} - {job['company']}")
+                print(result) 
+            continue
+        #Clear analysis file
+        elif choice == "5":
             confirm = input ("Are you sure?: (y/n)").lower()
             if confirm == "y":
                 clear_analysis()
-        elif choice == "5":
+        elif choice == "6":
             break
         else:
             print("\nOption does not exist!")
