@@ -1,16 +1,10 @@
 from openai import OpenAI
 from openai import RateLimitError
-from configPRIV import API_KEY
+from config import API_KEY
 
 client = OpenAI(api_key = API_KEY)
 
 def analyze_jobAI(job):
-    # Fake AI Function Result 
-    # return f"""
-    # Summary: This is a {job['title']} role at {job['company']}.
-    # Skills: Skills
-    # Level: Junior/Mid/Senior"""
-
     # OpenAI Logic
     # Start of prompt ===
     prompt = f""" 
@@ -36,3 +30,10 @@ def analyze_jobAI(job):
     except RateLimitError:
         print("Rate limit exceeded!")
         return
+
+def analyze_jobFake(job):
+    # Fake AI Function Result 
+    return f"""
+    Summary: This is a {job['title']} role at {job['company']}.
+    Skills: Skills
+    Level: Junior/Mid/Senior"""
