@@ -64,15 +64,15 @@ def main():
                 job_choice = int(job_choice)
             else:
                 print("\nThats not a number!")
-
-            for i, job in enumerate(jobs, 1):
-                if i == job_choice:
-                    print(f"{i}. {job['title']} - {job['company']}")
-                    result = analyze_job(job)
-                    if result == None:
-                        print("Error")
-                    print(result)
-                    save_analysis(result)
+            if 1 <= job_choice <= len(jobs): #Check if entered index exists
+                for i, job in enumerate(jobs, 1):
+                    if i == job_choice:
+                        print(f"{i}. {job['title']} - {job['company']}")
+                        result = analyze_job(job)
+                        print(result)
+                        save_analysis(result)
+            else:
+                print("\nIndex does not exist.")
 
         #Clear analysis file
         elif choice == "4":
